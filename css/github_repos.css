@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.todo-container {
+  width: 600px;
+  margin: 30px auto 0;
+  background-color: #ded0b6;
+}
+
+.todo-container .add-task {
+  background-color: #b2a59b;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  caret-color: #607274;
+}
+
+.todo-container .add-task input {
+  border: none;
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 18px;
+  background-color: #faeed1;
+}
+
+.todo-container .add-task input:focus {
+  outline: none;
+}
+
+.todo-container .add-task .plus {
+  background-color: #607274;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 18px;
+  top: 20px;
+  cursor: pointer;
+  color: #ded0b6;
+}
+
+.todo-container .task-content {
+  padding: 20px;
+}
+
+.todo-container .task-content > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #faeed1;
+  padding: 5px 10px;
+}
+
+.todo-container .task-content > span:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.todo-container .task-content .msg {
+  font-size: 15px;
+  color: #607274;
+}
+
+.todo-container .task-content > span .delete-button {
+  background-color: #607274;
+  color: #ded0b6;
+  padding: 5px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.todo-container .task-content > span.completed {
+  text-decoration: line-through;
+}
+
+.task-stats {
+  width: 600px;
+  margin: 15px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-stats .tasks-completed .finished {
+  text-decoration: line-through;
+}
+
+.task-stats .tasks-completed > span,
+.task-stats .tasks-count > span {
+  background-color: #b2a59b;
+  font-size: 15px;
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.all-tasks {
+  width: 600px;
+  margin: 15px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all-tasks .delete-all,
+.all-tasks .marked-all {
+  background-color: #607274;
+  color: #ded0b6;
+
+  padding: 5px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.time {
+  text-align: center;
+}
