@@ -12,4 +12,7 @@
 
 - You can't repeated task
 
+<hr>
+I used SweetAlert2: https://sweetalert2.github.io/#download
+
 ## Live Server: [https://safeya-yasien.github.io/to-do-list/]
