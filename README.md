@@ -15,5 +15,7 @@
 
 <hr>
 I used SweetAlert2: https://sweetalert2.github.io/#download
+<hr>
 <br>
-## Live Server: [https://safeya-yasien.github.io/to-do-list/]
+
+Live Server: [https://safeya-yasien.github.io/to-do-list/]
