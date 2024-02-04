@@ -1,5 +1,3 @@
-// add to tasks to the local storage
-
 let taskContainer = document.querySelector(".todo-container"),
   taskContent = document.querySelector(".task-content"),
   inputValue = document.querySelector(".add-task input"),
@@ -10,7 +8,20 @@ let taskContainer = document.querySelector(".todo-container"),
   completeAllButton = document.querySelector(".all-tasks .marked-all"),
   time = document.querySelector(".time");
 
-window.onload = () => inputValue.focus();
+window.onload = () => {
+  inputValue.focus();
+
+  loadTasksFromLocalStorage();
+
+  if (tasksExistInLocalStorage()) {
+    deleteEmptyMsg();
+  }
+};
+
+function tasksExistInLocalStorage() {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  return tasks.length > 0;
+}
 
 addButton.addEventListener("click", isInputEmpty);
 
@@ -58,8 +69,6 @@ function isTaskExist(taskName) {
   );
 }
 
-isTaskExist(inputValue.value);
-
 function createTask() {
   if (isTaskExist(inputValue.value)) {
     createSwalBox("Task already exists!");
@@ -88,6 +97,8 @@ function createTask() {
 
     inputValue.value = "";
     calculateTasks();
+
+    saveTasksToLocalStorage();
   }
 }
 
@@ -95,6 +106,8 @@ function deleteTask(taskBox) {
   taskBox.remove();
 
   calculateTasks();
+
+  saveTasksToLocalStorage();
 
   if (document.querySelectorAll(".task-content .task-box").length === 0) {
     createNoTaskMsg();
@@ -128,9 +141,14 @@ completeAllButton.addEventListener("click", completeAllTasks);
 deleteAllButton.addEventListener("click", deleteAllTasks);
 
 function deleteAllTasks() {
-  document.querySelectorAll(".task-box").forEach((task) => task.remove());
-  createNoTaskMsg();
-  resetTaskCount();
+  let taskBoxs = document.querySelectorAll(".task-box");
+
+  if (taskBoxs.length > 0) {
+    taskBoxs.forEach((task) => task.remove());
+    createNoTaskMsg();
+    resetTaskCount();
+    saveTasksToLocalStorage();
+  }
 }
 
 function completeAllTasks() {
@@ -143,6 +161,24 @@ function completeAllTasks() {
 function resetTaskCount() {
   taskCount.innerHTML = 0;
   tasksCompleted.innerHTML = 0;
+}
+
+function saveTasksToLocalStorage() {
+  let tasks = [];
+  document
+    .querySelectorAll(".task-content .task-box")
+    .forEach((task) => tasks.push(task.getAttribute("data-task-name")));
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasksFromLocalStorage() {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  tasks.forEach((task) => {
+    inputValue.value = task;
+    createTask();
+  });
 }
 
 function digitalClock() {
@@ -164,11 +200,13 @@ function digitalClock() {
   let seconds = date.getSeconds();
   let flag = "PM";
 
-  if (hours === 12) hours = 1;
-  else hours = hours - 12;
+  if (hours === 0) hours = 12;
+  if (hours > 12) {
+    hours = hours - 12;
+  }
   if (hours < 10) hours = "0" + hours;
-  if (minutes < 10) hours = "0" + hours;
-  if (seconds < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
+  if (seconds < 10) seconds = "0" + seconds;
 
   let fullTime = `${day} ${hours}: ${minutes}: ${seconds} ${flag}`;
 

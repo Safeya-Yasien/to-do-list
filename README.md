@@ -7,12 +7,13 @@
 - You can mark all tasks as completed tasks
 - support task counter
 - contain digital clock
-
+- Adding tasks to local storage. You can reload the page and you will find what you added as is
 <hr>
 
+- You can leave the field empty
 - You can't repeated task
 
 <hr>
 I used SweetAlert2: https://sweetalert2.github.io/#download
-
+<br>
 ## Live Server: [https://safeya-yasien.github.io/to-do-list/]
