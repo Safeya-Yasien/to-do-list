@@ -14,9 +14,10 @@
 - You can't repeated task
 
 <hr>
-# What I used
-- SweetAlert2: https://sweetalert2.github.io/#download
+What I used<br>
+- SweetAlert2: https://sweetalert2.github.io/#download<br>
 - Local Storage
+<br>
 <hr>
 <br>
 
